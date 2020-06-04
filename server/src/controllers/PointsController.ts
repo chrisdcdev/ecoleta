@@ -54,7 +54,7 @@ class PointsController{
         const trx = await knex.transaction();
 
         const point = {
-            image: 'image_fake',
+            image: 'https://images.unsplash.com/photo-1540661116512-12e516d30ce4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=969&q=80',
             name, //short sintax
             email,
             whatsapp,
