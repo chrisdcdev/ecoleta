@@ -34,6 +34,9 @@ const CreatePoint = () => {
     const [selectedPosition, setSelectedPosition] = useState<[number, number]>([0, 0]);
     const [initialPosition, setInicialPosition] = useState<[number, number]>([0, 0]);
 
+
+    const history = useHistory();
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
