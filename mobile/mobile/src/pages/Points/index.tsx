@@ -1,12 +1,94 @@
 import React from 'react';
-import Constants from 'expo-constants'
-import { View, StyleSheet  } from 'react-native';
+import Constants from 'expo-constants';
+import {Feather as Icon} from '@expo/vector-icons';
+import { View, StyleSheet, TouchableOpacity, Text, ScrollView} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import MapView, {Marker} from 'react-native-maps';
+import { SvgUri } from 'react-native-svg';
 
 const Points = () => {
+
+  const navigation = useNavigation();
+
+
+  function handleNavigateBack(){
+    navigation.goBack();
+  } 
+
+
     return (
+      <>
         <View style={styles.container}>
-            
+            <TouchableOpacity onPress={handleNavigateBack}>
+              <Icon name='arrow-left' size={20} color='#34cb79'/>
+            </TouchableOpacity>
+
+            <Text style={styles.title}>
+                Bem vindo.
+            </Text>
+            <Text style={styles.description}>
+                Encontre no mapa um ponto de coleta.
+            </Text>
+
+            <View style={styles.mapContainer}>
+              <MapView 
+                style={styles.map} 
+                  initialRegion={{
+                    latitude: -4.4873657,
+                    longitude:-38.5982356,
+                    latitudeDelta: 0.014,
+                    longitudeDelta:0.014,
+                }}
+              >
+                <Marker coordinate={{
+                    latitude: -4.4873657,
+                    longitude:-38.5982356,
+                  }}
+                />
+              </MapView>
+            </View>
+
         </View>
+        <View style={styles.itemsContainer}>
+
+          <ScrollView 
+            horizontal 
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={ { paddingHorizontal : 20 } }> 
+
+              <TouchableOpacity style={styles.item} onPress={ () => {} }>
+                <SvgUri width={42} height={42} uri='http://192.168.0.2:3333/uploads/lampadas.svg'/>
+                <Text style={styles.itemTitle}>Lâmpada</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.item} onPress={ () => {} }>
+                <SvgUri width={42} height={42} uri='http://192.168.0.2:3333/uploads/lampadas.svg'/>
+                <Text style={styles.itemTitle}>Lâmpada</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.item} onPress={ () => {} }>
+                <SvgUri width={42} height={42} uri='http://192.168.0.2:3333/uploads/lampadas.svg'/>
+                <Text style={styles.itemTitle}>Lâmpada</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.item} onPress={ () => {} }>
+                <SvgUri width={42} height={42} uri='http://192.168.0.2:3333/uploads/lampadas.svg'/>
+                <Text style={styles.itemTitle}>Lâmpada</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.item} onPress={ () => {} }>
+                <SvgUri width={42} height={42} uri='http://192.168.0.2:3333/uploads/lampadas.svg'/>
+                <Text style={styles.itemTitle}>Lâmpada</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.item} onPress={ () => {} }>
+                <SvgUri width={42} height={42} uri='http://192.168.0.2:3333/uploads/lampadas.svg'/>
+                <Text style={styles.itemTitle}>Lâmpada</Text>
+              </TouchableOpacity>
+                
+          </ScrollView>
+        </View>
+        </>
     ) ;
 };
 

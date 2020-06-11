@@ -11,7 +11,7 @@ class itemsController{
             return{
                 id:item.id,
                 title:item.title,
-                image: `http://localhost:3333/uploads/${item.image}`,
+                image: `http://92.168.0.2:3333/uploads/${item.image}`,
             }
         })
     
