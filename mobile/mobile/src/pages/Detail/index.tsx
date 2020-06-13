@@ -1,13 +1,16 @@
-import React from 'react';
-import { View, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { View, StyleSheet, TouchableOpacity, Image, Text, SafeAreaView } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {Feather as Icon} from '@expo/vector-icons';
-import Constants from 'expo-constants';
+import {Feather as Icon, FontAwesome} from '@expo/vector-icons';
+import { RectButton } from 'react-native-gesture-handler';
 
 const Detail = () => {
 
-
     const navigation = useNavigation();
+
+    useEffect( () =>{
+      
+    }, []);
 
 
     function handleNavigateBack(){
@@ -15,14 +18,49 @@ const Detail = () => {
     } 
 
     return (
+      <SafeAreaView style={{ flex : 1 }}>  
         <View style={styles.container}>
             <TouchableOpacity onPress={handleNavigateBack}>
-                <Icon name='arrow-left' size={20} color='#34cb69'/>
+                <Icon name='arrow-left' size={20} color='#34cb69' style={ { marginTop:20 } }/>
             </TouchableOpacity>
 
             <Image style={styles.pointImage} source={{ uri: 'https://images.unsplash.com/photo-1540661116512-12e516d30ce4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=969&q=80'}}/>
+            <Text style={styles.pointName}>
+              Mercadão do João
+            </Text>
+            <Text style={styles.pointItems}>
+              Lâmpadas, Óleo de cozinha
+            </Text>
 
+            <View style={styles.address}>
+              <Text style={styles.addressTitle}>
+                Endereço
+              </Text>
+              <Text style={styles.addressContent}>
+                Ocara, CE
+              </Text>
+            </View>
         </View> 
+        
+        <View style={styles.footer}>
+            <RectButton style={styles.button} onPress={ () => {} }>
+              <FontAwesome name='whatsapp' size={20} color='#fff'/>
+              <Text style={styles.buttonText}>
+                Whatsapp
+              </Text>
+            </RectButton>
+
+            <RectButton style={styles.button} onPress={ () => {} }>
+              <Icon name='mail' size={20} color='#fff'/>
+              <Text style={styles.buttonText}>
+                Email
+              </Text>
+            </RectButton>
+          
+        </View>
+      </SafeAreaView>
+
+        
     );
 };
  
