@@ -64,9 +64,9 @@ const Points = () => {
   useEffect(() => {
     api.get('points', {
       params:{
-        city:'Fortaleza',
+        city:'Ocara',
         uf:'CE',
-        items:[4,5]
+        items:[1,2]
       }
     }).then(response=>{
       setPoints(response.data);
@@ -80,8 +80,10 @@ const Points = () => {
     navigation.goBack();
   } 
 
-  function handleNavigateToDetail(){
-    navigation.navigate('Detail');
+  function handleNavigateToDetail( id: number ){
+    navigation.navigate('Detail', {
+      point_id: id
+    });
   }
 
   function handleSelectItem(id:number){
@@ -124,23 +126,27 @@ const Points = () => {
                            longitudeDelta:0.014,
                        }}
                      >
+
+
                      {points.map( point =>(
                          <Marker
                          key={String(point.id)}
                          style={styles.mapMarker}
-                         onPress={handleNavigateToDetail}
+                         onPress={() => handleNavigateToDetail(point.id)}
                          coordinate={{
                            latitude: point.latitude,
-                           longitude:-point.longitude,
+                           longitude: point.longitude,
                          }}
                        >
                          <View style={styles.mapMarkerContainer}>
-                           <Image style={styles.mapMarkerImage} source={{ uri:point.image }}/>
-                        <Text style={styles.mapMarkerTitle}>{point.name}</Text>
+                           <Image style={styles.mapMarkerImage} source={{ uri : point.image }}/>
+                           <Text style={styles.mapMarkerTitle}>{point.name}</Text>
                          </View>
        
                        </Marker>
                      ))}
+
+
                      </MapView>
                ) }
 

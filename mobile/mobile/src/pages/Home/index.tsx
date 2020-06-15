@@ -1,16 +1,31 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Feather as Icon } from '@expo/vector-icons';
 import { View, Image, StyleSheet, Text, ImageBackground } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler'; 
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
+
+
+interface IBGEUFResponse{
+    sigla: string;
+}
 
 const Home = () => {
 
     const navigation = useNavigation();
+    const [ufs, setUfs] = useState<string[]>([]);
 
     function handleNavigateToPoits(){
         navigation.navigate('Points')
     }
+
+    useEffect(()=>{
+        axios.get<IBGEUFResponse[]>(`https://servicodados.ibge.gov.br/api/v1/localidades/estados`)
+             .then(response=>{
+                const ufInitials = response.data.map(uf=> uf.sigla);
+                setUfs(ufInitials);
+             })
+    }, [])
 
     return (
         <ImageBackground
